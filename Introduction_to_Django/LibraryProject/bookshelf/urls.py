@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from .models import views
-from LibraryProject import settings.INS
+from LibraryProject import settings
 
 urlpatterns = [
     path( 'hello/', views.hello_view, name= 'greetings'),
