@@ -6,7 +6,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.contrib.auth.decorators import user_passes_test, permission_required
+from django.contrib.auth.decorators import permission_required, user_passes_test
 from django.http import HttpResponseForbidden
 from .forms import BookForm
 
@@ -32,6 +32,14 @@ def edit_book(request, pk):
     else:
         form = BookForm(instance=book)
     return render(request, 'relationship_app/edit_book.html', {'form': form, 'book': book})
+
+@permission_required('relationship_app.can_delete_book', raise_exception=True)
+def delete_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == 'POST':
+        book.delete()
+        return redirect('book_list')  # Replace with your actual view for listing books
+    return render(request, 'relationship_app/delete_book.html', {'book': book})
 
 def check_role(role):
     def decorator(user):
@@ -67,14 +75,14 @@ def register(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'relationship_app/templates/relationship_app/register.html', {'form': form})
+    return render(request, 'relationship_app/register.html', {'form': form})
 
 
 def list_books(request):
     books = Book.objects.all()
-    return render(request, 'relationship_app/templates/relationship_app/list_books.html', {'books': books})
+    return render(request, 'relationship_app/list_books.html', {'books': books})
 
 class LibraryDetailView(DetailView):
     model =  Library
-    template_name = 'relationship_app/templates/relationship_app/library_detail.html'
+    template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
