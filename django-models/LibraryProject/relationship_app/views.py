@@ -7,11 +7,11 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-class CustomLoginView(LoginView):
+class LoginView(LoginView):
     template_name = 'login.html'
     redirect_authenticated_user = True
 
-class CustomLogoutView(LogoutView):
+class LogoutView(LogoutView):
     template_name = 'logout.html'
 
 def register(request):
