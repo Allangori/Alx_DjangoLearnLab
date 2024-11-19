@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("<h1>Welcome to the Library App</h1><p><a href='/relationship_app/books/'>Go to Books</a></p>")
 
 urlpatterns = [
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('relationship_app/', include('relationship_app.urls'))
     
