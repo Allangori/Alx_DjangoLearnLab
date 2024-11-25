@@ -34,6 +34,21 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 SECRET_KEY = os.getenv('SECRET_KEY', 'default-insecure-key')
 
+# Browser-side security headers
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking by disallowing framing
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME-type sniffing
+SECURE_BROWSER_XSS_FILTER = True  # Enable browser's XSS filter
+
+
+# Enable HTTPS support
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Additional security settings for production
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP traffic to HTTPS
+CSRF_COOKIE_SECURE = True   # Send CSRF cookies over HTTPS only
+SESSION_COOKIE_SECURE = True  # Send session cookies over HTTPS only
+
+
 
 
 
