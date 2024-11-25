@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
-from .forms import SearchForm
+from .forms import ExampleForm
 
 
 @permission_required('bookshelf.can_view', raise_exception=True)
@@ -95,7 +95,7 @@ def member_dashboard(request):
     return HttpResponse("Welcome, Member!")
 
 def search_books(request):
-    form = SearchForm(request.GET or None)
+    form = ExampleForm(request.GET or None)
     books = None
     if form.is_valid():
         query = form.cleaned_data['query']
