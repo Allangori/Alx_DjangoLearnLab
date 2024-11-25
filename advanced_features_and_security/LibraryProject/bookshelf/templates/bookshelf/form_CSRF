@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    <!-- Your form fields here -->
+    <input type="text" name="example_field" placeholder="Enter text">
+    <button type="submit">Submit</button>
+</form>

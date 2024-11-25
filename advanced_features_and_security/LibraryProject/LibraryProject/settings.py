@@ -11,11 +11,37 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+# Security in Production
+DEBUG = False  # Ensure DEBUG is False in production
+
+ALLOWED_HOSTS = ['your-domain.com', '127.0.0.1']  # Replace with your domain or IP
+
+# Secure Cookies
+CSRF_COOKIE_SECURE = True  # Send CSRF cookies over HTTPS only
+SESSION_COOKIE_SECURE = True  # Send session cookies over HTTPS only
+
+# XSS Protection
+SECURE_BROWSER_XSS_FILTER = True  # Enable XSS protection in browsers
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking attacks
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent the browser from guessing file types
+
+# HTTPS Settings
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+SECURE_HSTS_SECONDS = 31536000  # Enable HTTP Strict Transport Security for 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECRET_KEY = os.getenv('SECRET_KEY', 'default-insecure-key')
+
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-AUTH_USER_MODEL = 'relationship_app.CustomUser'
+#AUTH_USER_MODEL = 'relationship_app.CustomUser'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -23,9 +49,9 @@ AUTH_USER_MODEL = 'relationship_app.CustomUser'
 SECRET_KEY = 'django-insecure-uq631+i5ditpr6&xrfi=8!xrmvk0st0cp_+j8donp3w0vuah0('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition
