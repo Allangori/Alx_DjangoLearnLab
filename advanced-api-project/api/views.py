@@ -9,6 +9,12 @@ from rest_framework import status
 from rest_framework import filters
 #from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework
+from django.http import JsonResponse
+
+
+def home(request):
+    return JsonResponse({"message": "Welcome to the Advanced API Project!"})
+
 
 class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
