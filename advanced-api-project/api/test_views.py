@@ -1,15 +1,25 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
 from rest_framework import status
-from .models import Book
+from .models import Book, Author
 
 class BookAPITestCase(TestCase):
     def setUp(self):
-        self.client = APIClient()
-        self.book1 = Book.objects.create(title="Book One", author="Author One", publication_year=2001)
-        self.book2 = Book.objects.create(title="Book Two", author="Author Two", publication_year=2005)
-        self.valid_data = {"title": "New Book", "author": "New Author", "publication_year": 2023}
-        self.update_data = {"title": "Updated Book", "author": "Updated Author", "publication_year": 2022}
+        # Create authors
+        self.author1 = Author.objects.create(name="Author One")
+        self.author2 = Author.objects.create(name="Author Two")
+
+        # Create books with the correct author instances
+        self.book1 = Book.objects.create(
+            title="Book One",
+            author=self.author1,
+            publication_year=2001,
+        )
+        self.book2 = Book.objects.create(
+            title="Book Two",
+            author=self.author2,
+            publication_year=2002,
+        )
 
     # Test List View
     def test_list_books(self):
