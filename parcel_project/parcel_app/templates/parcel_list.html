@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcel List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Parcel List</h1>
+
+        {% if parcels %}
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Description</th>
+                    <th>Source Location</th>
+                    <th>Destination Location</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for parcel in parcels %}
+                <tr>
+                    <td>{{ parcel.parcel_id }}</td>
+                    <td>{{ parcel.description }}</td>
+                    <td>{{ parcel.source_location }}</td>
+                    <td>{{ parcel.destination_location }}</td>
+                    <td>{{ parcel.current_status }}</td>
+                    <td>
+                        <a href="{% url 'parcel_edit' parcel.parcel_id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'parcel_delete' parcel.parcel_id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="alert alert-info">No parcels have been registered yet.</p>
+        {% endif %}
+
+        <a href="{% url 'parcel_create' %}" class="btn btn-primary">Add New Parcel</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

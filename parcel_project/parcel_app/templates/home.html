@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome to Parcel Pro!</h1>
+        <p class="text-center">This is the home page of Parcel Pro management system. Use the links below to navigate through the application.</p>
+
+        <div class="text-center">
+            <a href="{% url 'user_list' %}" class="btn btn-primary btn-lg m-2">Manage Users</a>
+            <a href="{% url 'parcel_list' %}" class="btn btn-success btn-lg m-2">Manage Parcels</a>
+            <a href="{% url 'courier_list' %}" class="btn btn-warning btn-lg m-2">Manage Couriers</a>
+            <a href="{% url 'parcel_tracking_list' %}" class="btn btn-info btn-lg m-2">Track Parcels</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
