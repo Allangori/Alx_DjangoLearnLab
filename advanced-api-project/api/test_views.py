@@ -5,6 +5,12 @@ from .models import Book, Author
 
 class BookAPITestCase(TestCase):
     def setUp(self):
+        self.valid_data = {
+            "title": "Test Book",
+            "author": "Test Author",
+            "publication_year": 2024,
+            # add other required fields here
+        }
         # Create authors
         self.author1 = Author.objects.create(name="Author One")
         self.author2 = Author.objects.create(name="Author Two")
