@@ -31,3 +31,4 @@ class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['content'].widget = forms.Textarea(attrs={'rows': 3, 'placeholder': 'Add a comment...'})
+widget= TagWidget
