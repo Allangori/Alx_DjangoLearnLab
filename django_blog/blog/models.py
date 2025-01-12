@@ -2,12 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from taggit.managers import TaggableManager
+
 
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
     content = models.TextField()
     published_date = models.DateTimeField(auto_now_add=True)
+    tags = TaggableManager()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

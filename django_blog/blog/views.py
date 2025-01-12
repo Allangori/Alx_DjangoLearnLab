@@ -9,7 +9,7 @@ from .forms import UserUpdateForm, ProfileUpdateForm
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Post, Comment, Tag
+from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.db.models import Q
 
@@ -23,10 +23,6 @@ def post_search(request):
     ).distinct()
     return render(request, 'blog/post_search.html', {'posts': posts, 'query': query})
 
-def tag_posts(request, tag_name):
-    tag = Tag.objects.get(name=tag_name)
-    posts = tag.posts.all() 
-    return render(request, 'blog/tag_posts.html', {'posts': posts, 'tag': tag})
 
 def register(request):
     if request.method == 'POST':
