@@ -74,12 +74,25 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # MySQL backend
+        'NAME': 'alxdb',         
+        'USER': 'root',         
+        'PASSWORD': 'Daisy20)', 
+        'HOST': 'localhost',                  # Replace with your MySQL host (usually 'localhost')
+        'PORT': '3306',                       # Default MySQL port
     }
 }
+
+
+#DATABASES = {
+    #'default': {
+   #     'ENGINE': 'django.db.backends.sqlite3',
+  #      'NAME': BASE_DIR / 'db.sqlite3',
+ #   }
+#}
 
 
 # Password validation
