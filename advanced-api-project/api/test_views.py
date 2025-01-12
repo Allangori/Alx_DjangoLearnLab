@@ -1,7 +1,9 @@
 from django.test import TestCase
-from rest_framework.test import APIClient
+from rest_framework.test import APIClient, APITestCase
 from rest_framework import status
 from .models import Book, Author
+from django.contrib.auth.models import User
+
 
 class BookAPITestCase(TestCase):
     def setUp(self):
@@ -82,3 +84,17 @@ class BookAPITestCase(TestCase):
         self.client.logout()
         response = self.client.post('/api/books/create/', data=self.valid_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
+class MyViewTest(APITestCase):
+    def setUp(self):
+        # Create a test user
+        self.user = User.objects.create_user(username='testuser', password='password')
+
+    def test_some_view(self):
+        # Log in the test user
+        self.client.login(username='testuser', password='password')
+        
+        # Now you can test authenticated views
+        response = self.client.get('/api/some_view/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
