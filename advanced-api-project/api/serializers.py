@@ -2,7 +2,7 @@ from rest_framework import serializers
 from datetime import date
 from .models import Book, Author
 
-class BookSerializers(serializers.ModelSerializer):
+class BookSerializers(serializers.ModelSerializer) :
     class Meta:
         model = Book
         #fields = '__all__'
